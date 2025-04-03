@@ -8,9 +8,9 @@ if not lib.checkDependency('ox_lib', '3.30.4') then return end
 
 lib.versionCheck('overextended/ox_doorlock')
 require 'server.convert'
-require 'server.hooks'
 
 local utils = require 'server.utils'
+local TriggerEventHooks = require 'server.hooks'
 local doors = {}
 
 local function encodeData(door)
@@ -237,7 +237,7 @@ local function isAuthorised(playerId, door, lockpick)
 
 	::continue::
 
-	local hookResult = TriggerHook('doorAuthorization', {
+	local hookResult = TriggerEventHooks('doorAuthorization', {
 		source = playerId,
 		door = door,
 		lockpick = lockpick,

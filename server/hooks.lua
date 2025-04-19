@@ -70,6 +70,8 @@ function removeResourceHook(resource, hookId)
 end
 
 AddEventHandler('onResourceStop', removeResourceHook)
-exports('removeResourceHook', removeResourceHook)
+exports('removeResourceHook', function(id)
+    removeResourceHook(GetInvokingResource() or cache.resource, id)
+end)
 
 return TriggerEventHooks
